@@ -32,4 +32,29 @@ it('.enqueue()', function () {
   q.enqueue('build-pdf', new Date(), { foo: 'bar' });
 
   assert.equal(jobs.length, 1, 'jobs length')
-})
+});
+
+it('.series()', function (done) {
+  q.series([
+    {
+      action: 'build-pdf',
+      data: {
+        url: 'http://localhost:8080',
+        output: 'foo',
+        email: 'foo@test.com',
+        password: 'bar'
+      }
+    },
+    {
+    action: 'upload-to-s3',
+    data: {
+      src: 'foo',
+      dest: '/bar',
+      bucket: 'baz'
+      }
+    }
+  ], function (error, results) {
+    assert(!error);
+    done();
+  });
+});
