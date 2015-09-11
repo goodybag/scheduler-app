@@ -25,3 +25,11 @@ it('should enqueue jobs', function () {
   assert.equal(jobs[0].type, 'build-pdf', 'jobs type');
   assert.equal(jobs[0].data, jobData, 'jobs data');
 });
+
+it('.enqueue()', function () {
+  var jobs = q.testMode.jobs;
+
+  q.enqueue('build-pdf', new Date(), { foo: 'bar' });
+
+  assert.equal(jobs.length, 1, 'jobs length')
+})
