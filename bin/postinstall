@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
 named_modules () {
-  cd node_modules/cater
-  grunt namedModules
-  cd ../..
-  grunt nameModules
+  cater="node_modules/cater"
+  if [ -d "$cater" ]; then
+    cd $cater
+    grunt namedModules
+    cd ../..
+    grunt nameModules
+  fi
 }
 
 main () {
