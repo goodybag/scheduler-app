@@ -10,7 +10,7 @@
   "namedModules": {
     "build-pdf": "./node_modules/cater/workers/scheduler/actions/build-pdf.js"
   },
-  "peerDependencies": {
+  "devDependencies": {
     "cater": "https://github.com/goodybag/cater-api-server.git"
   },
   "dependencies": {
