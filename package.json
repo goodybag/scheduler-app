@@ -8,7 +8,8 @@
     "postinstall": "./bin/postinstall"
   },
   "namedModules": {
-    "build-pdf": "./node_modules/cater/workers/scheduler/actions/build-pdf.js"
+    "build-pdf": "./node_modules/cater/workers/scheduler/actions/build-pdf.js",
+    "upload-to-s3": "./node_modules/cater/workers/scheduler/actions/upload-to-s3.js"
   },
   "devDependencies": {
     "cater": "https://github.com/goodybag/cater-api-server.git"
