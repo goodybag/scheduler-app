@@ -19,10 +19,15 @@ node server
 
 ### Server
 
+``js
+var q = require('./lib')
+q.start();
+```
 
 ### Client
+
 ```js
-var q = require('./lib').q;
+var q = require('scheduler');
 
 q.create('build-pdf', {
   url: 'http://localhost:3000/orders/1234',
@@ -31,7 +36,6 @@ q.create('build-pdf', {
   password: 'bar'
 }).save();
 ```
-
 
 
 ### Ideas
