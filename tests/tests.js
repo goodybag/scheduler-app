@@ -34,6 +34,18 @@ it('.enqueue()', function () {
   assert.equal(jobs.length, 1, 'jobs length')
 });
 
+it('.enqueue() - should delay datetime', function () {
+  var jobs = q.testMode.jobs;
+
+  q.enqueue('build-pdf', new Date(), {});
+  assert.equal(jobs[0]._delay, undefined);
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  q.enqueue('build-pdf', tomorrow, {});
+  assert.equal(jobs[1]._delay, 86400);
+});
+
 it('.series()', function (done) {
   q.series([
     {
@@ -57,4 +69,5 @@ it('.series()', function (done) {
     assert(!error);
     done();
   });
+
 });
