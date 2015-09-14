@@ -2,19 +2,11 @@
 Goodybag job scheduler (WIP)
 
 ## Setup
+
 ```
 npm install -g phantomjs
 npm install
 npm test
-```
-
-todo: write a bash script
-
-```
-cd ./node_modules/cater
-grunt namedModules
-cd ..
-grunt nameModules
 ```
 
 open jobs admin UI http://localhost:8080
@@ -23,10 +15,14 @@ open jobs admin UI http://localhost:8080
 node server
 ```
 
-## Example Enqueue
+## Example
 
+### Server
+
+
+### Client
 ```js
-var q = require('./lib/q');
+var q = require('./lib').q;
 
 q.create('build-pdf', {
   url: 'http://localhost:3000/orders/1234',
