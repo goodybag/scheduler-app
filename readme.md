@@ -19,7 +19,7 @@ node server
 
 ### Server
 
-``js
+```js
 var q = require('./lib')
 q.start();
 ```
