@@ -9,7 +9,7 @@ npm install
 npm test
 ```
 
-open jobs admin UI http://localhost:8080
+open jobs admin UI [http://localhost:8080](http://localhost:8080)
 
 ```
 node server
@@ -27,14 +27,22 @@ q.start();
 ### Client
 
 ```js
-var q = require('scheduler');
+var scheduler = require('scheduler');
 
-q.create('build-pdf', {
+var jobData = {
+  title: 'my job', // the title will dislay in Kue UI dashboard
   url: 'http://localhost:3000/orders/1234',
   output: 'foo',
   email: 'foo@test.com',
   password: 'bar'
-}).save();
+};
+
+scheduler.enqueue('build-pdf', new Date, jobData, function (error) {
+  if (error) throw error;
+});
+
+// you can also interface with kue directly.
+q.create('build-pdf', jobData).save();
 ```
 
 
