@@ -9,7 +9,8 @@
   },
   "namedModules": {
     "build-pdf": "./node_modules/cater/workers/scheduler/actions/build-pdf.js",
-    "upload-to-s3": "./node_modules/cater/workers/scheduler/actions/upload-to-s3.js"
+    "upload-to-s3": "./node_modules/cater/workers/scheduler/actions/upload-to-s3.js",
+    "actions": "./node_modules/cater/workers/scheduler/actions/index.js"
   },
   "dependencies": {
     "async": "^1.4.2",
