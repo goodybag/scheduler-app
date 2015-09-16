@@ -8,22 +8,22 @@
     "postinstall": "./bin/postinstall"
   },
   "namedModules": {
+    "actions": "./node_modules/cater/workers/scheduler/actions/index.js",
     "build-pdf": "./node_modules/cater/workers/scheduler/actions/build-pdf.js",
-    "upload-to-s3": "./node_modules/cater/workers/scheduler/actions/upload-to-s3.js",
-    "actions": "./node_modules/cater/workers/scheduler/actions/index.js"
+    "upload-to-s3": "./node_modules/cater/workers/scheduler/actions/upload-to-s3.js"
   },
   "dependencies": {
     "async": "^1.4.2",
-    "forky": "^0.3.0",
     "kue": "^0.9.4",
     "moment": "^2.10.6"
   },
   "devDependencies": {
     "assert": "^1.3.0",
     "cater": "https://github.com/goodybag/cater-api-server.git",
-    "mocha": "^2.3.2",
+    "forky": "^0.3.0",
     "grunt": "^0.4.5",
-    "grunt-named-modules": "^1.0.3"
+    "grunt-named-modules": "^1.0.3",
+    "mocha": "^2.3.2"
   },
   "author": "Goodybag",
   "license": "ISC"
