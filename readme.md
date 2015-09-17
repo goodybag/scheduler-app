@@ -1,5 +1,6 @@
 #Scheduler
-Goodybag job scheduler (WIP)
+
+Goodybag job scheduler powered by [kue](https://github.com/Automattic/kue)
 
 ## Setup
 
@@ -9,22 +10,15 @@ npm install
 npm test
 ```
 
-open jobs admin UI [http://localhost:8080](http://localhost:8080)
+
+start the scheduler server
 
 ```
 node server
 ```
+open jobs admin UI [http://localhost:8080](http://localhost:8080)
 
 ## Example
-
-### Server
-
-```js
-var q = require('./lib')
-q.start();
-```
-
-### Client
 
 ```js
 var scheduler = require('scheduler');
@@ -37,13 +31,23 @@ var jobData = {
   password: 'bar'
 };
 
-scheduler.enqueue('build-pdf', new Date, jobData, function (error) {
+scheduler.enqueue('build-pdf', new Date(), jobData, function (error) {
   if (error) throw error;
 });
 
 // you can also interface with kue directly.
-q.create('build-pdf', jobData).save();
+scheduler.create('build-pdf', jobData).save();
 ```
+
+## Client API
+When you `npm install scheduler` only the following methods will be available (along with the kue api). It should be noted that goodybag cater is a dev dependency and should remain a dev dependency to avoid costly production deploys.
+
+#### .enqueue ( action, datetime, jobData, callback )
+Adds a new job to the queue
+
+#### .watchStuckActiveJobs ( sec, max )
+Watch every `sec` seconds for jobs that have been in active state longer than `max` minutes.
+Active jobs that exceed `max` minutes are set to 'inactive' (kue will attempt to reprocess).
 
 
 ### Ideas
