@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var m = require('../middleware');
-
-router.get('/'
-, m.getJobs
-, function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.render('index');
 });
 
 module.exports = router;
