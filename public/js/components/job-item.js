@@ -12,15 +12,34 @@ export default class JobItem extends React.Component {
   }
 
   render () {
+
+    var moreInfo = (function () {
+      return (
+        <dl className="more-info-list">
+        {Object.keys(this.state).map( (key, i) => {
+          let value = this.state[key];
+
+          return (
+            <div key={i}>
+              <dt>{key}</dt>
+              <dd>
+                {typeof value === "object"? JSON.stringify(value) : value}
+              </dd>
+            </div>
+          );
+        })}
+        </dl>
+      );
+    }.bind(this))();
+
     return (
-      <div>
-        <p onClick={this.toggleInfo.bind(this)}>#{this.state.id} {this.state.action}</p>
-        <div ref="moreInfo" className="hide">
-          <p>status {this.state.status}</p>
-          <p>data {JSON.stringify(this.state.data)}</p>
-          <p>datetime {this.state.datetime}</p>
+      <div className="job-item" onClick={this.toggleInfo.bind(this)}>
+        <div className="job-info">
+          {this.state.id} <span className="action">{this.state.action}</span>
         </div>
-        <hr />
+        <div ref="moreInfo" className="hide">
+          {moreInfo}
+        </div>
       </div>
     );
   }

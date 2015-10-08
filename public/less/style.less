@@ -10,6 +10,7 @@ html,body {
 
 body{
   font-family:'Avenir', Helvetica, sans-serif;
+  color: rgba(0,0,0,0.8);
   font-size: 14px;
   margin: 0px;
   padding: 0px;
@@ -64,6 +65,40 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
 }
 
 .hide { display: none; }
+
+///////////////////////
+// Job Item
+//////////////////////
+.job-item {
+  cursor: pointer;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+
+  .job-info {
+    font-weight: 700;
+  }
+
+  .action {
+    font-weight: 500;
+  }
+}
+
+.job-item:hover {
+  background-color: #eee;
+}
+
+.more-info-list {
+  dt {
+      width: 15%;
+      font-weight: 700;
+  }
+
+  dt, dd {
+      display: inline-block;
+      margin: 0;
+      //float: left;
+  }
+}
 
 //////////////
 // Job Nav
