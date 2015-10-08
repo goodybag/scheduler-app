@@ -1,12 +1,13 @@
 {
-  "name": "scheduler-ui",
+  "name": "scheduler-app",
   "version": "0.0.0",
-  "description": "goodybag job scheduler UI",
+  "description": "goodybag job scheduler app",
   "author": "Goodybag",
   "private": true,
   "scripts": {
     "start": "node server",
-    "build": "./node_modules/gulp/bin/gulp.js"
+    "build": "./node_modules/gulp/bin/gulp.js",
+    "build:dev": "./node_modules/gulp/bin/gulp.js dev"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -16,7 +17,10 @@
     "hbs": "~3.1.0",
     "less-middleware": "1.0.x",
     "morgan": "~1.6.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "serve-favicon": "~2.3.0",
+    "superagent": "^1.4.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
