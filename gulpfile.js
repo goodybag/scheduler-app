@@ -8,6 +8,7 @@ var less       = require('gulp-less')
 var minifyCSS  = require('gulp-minify-css')
 
 gulp.task('default', ['babel', 'less'])
+gulp.task('dev', ['default', 'watch'])
 
 gulp.task('watch', function () {
   gulp.watch('./public/js/**/*.*', ['babel']);
@@ -19,10 +20,10 @@ gulp.task('babel', function () {
    return browserify('./public/js/pages/main.js')
       .transform(babelify)
       .bundle()
-      .pipe(source('bundle.min.js'))
+      .pipe(source('main.js'))
       .pipe(buffer())
-      .pipe(uglify())
-      .pipe(gulp.dest('dist'))
+      //.pipe(uglify({ outSourceMap: true }))
+      .pipe(gulp.dest('public/dist'))
 });
 
 gulp.task('less', function () {
