@@ -1,4 +1,4 @@
-#Scheduler UI
+#Scheduler App
 
 WIP
 
