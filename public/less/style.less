@@ -1,6 +1,89 @@
+// Color Palette
+@blue: #5D69CE;
+@lightGrey: #D1D4E1;
+@headerHeight: 250px;
+
+html,body {
+  min-height: 100%;
+  height: 100%;
+}
+
 body{
-  padding:50px;
-  font:14px "Lucida Grande",Helvetica,Arial,sans-serif;
+  font-family:'Avenir', Helvetica, sans-serif;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
 }
 
 a { color:#00B7FF; }
+
+h1, h2, h3, h4 { margin: 0; padding: 0;}
+
+.header {
+  background-color: @blue;
+  height: @headerHeight;
+  color: #fff;
+}
+
+.header .title {
+  font-weight: 300;
+  font-size: 30px;
+  position: relative;
+  top: @headerHeight / 2;
+}
+
+.footer {
+  text-align: center;
+  height: 35px;
+}
+
+.container {
+  min-height: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+.hide { display: none; }
+
+//////////////
+// Job Nav
+//////////////
+.job-nav {
+  position: relative;
+  top: -25px;
+  background-color: @blue;
+}
+
+.job-nav ol {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.job-nav ol > li {
+  display: inline-block;
+  color: #FFF;
+  margin-right: 10px;
+  text-transform: capitalize;
+  font-size: 15px;
+}
