@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 export default class JobItem extends React.Component {
   constructor (props) {
@@ -36,6 +37,7 @@ export default class JobItem extends React.Component {
       <div className="job-item" onClick={this.toggleInfo.bind(this)}>
         <div className="job-info">
           {this.state.id} <span className="action">{this.state.action}</span>
+          <span className="job-datetime">{moment(this.state.datetime).fromNow()}</span>
         </div>
         <div ref="moreInfo" className="hide">
           {moreInfo}
