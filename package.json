@@ -4,6 +4,7 @@
   "description": "goodybag job scheduler app",
   "author": "Goodybag",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node server",
     "test": "./node_modules/mocha/bin/mocha test/",

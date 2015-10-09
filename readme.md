@@ -25,12 +25,13 @@ npm start [port] default port 8000
 
 ```js
 {
-  "scheduler": "https://github.com/goodybag/scheduler-app.git"
+  "scheduler-app": "https://github.com/goodybag/scheduler-app.git"
 }
 ```
 
 2) register
 
 ```js
-app.user(scheduler('postgres://localhost/cater'))
+var schedulerApp = require('scheduler-app');
+app.user(schedulerApp('postgres://localhost/cater'))
 ```
