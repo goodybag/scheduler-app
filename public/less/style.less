@@ -1,7 +1,11 @@
 // Color Palette
 @blue: #5D69CE;
+@white: #FFF;
+@lightBlue: #93A1DF;
+@lighterBlue: #64D1FB;
 @lightGrey: #D1D4E1;
-@headerHeight: 250px;
+
+@headerHeight: 200px;
 
 html,body {
   min-height: 100%;
@@ -30,7 +34,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
   font-weight: 300;
   font-size: 30px;
   position: relative;
-  top: @headerHeight / 2;
+  top: @headerHeight / 3;
 }
 
 .footer {
@@ -111,8 +115,13 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
 //////////////
 .job-nav {
   position: relative;
-  top: -25px;
+  top: -30px;
   background-color: @blue;
+
+  .active {
+    border-bottom: 3px solid @lighterBlue;
+    color: @white;
+  }
 }
 
 .job-nav ol {
@@ -123,8 +132,16 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
 
 .job-nav ol > li {
   display: inline-block;
-  color: #FFF;
+  cursor: pointer;
+  color: @lightBlue;
+  padding-bottom: 7px;
   margin-right: 10px;
   text-transform: capitalize;
   font-size: 15px;
+  transition: all 0.3s;
+}
+
+.job-nav ol > li:hover {
+  color: @white;
+  border-bottom: 3px solid @lighterBlue;
 }

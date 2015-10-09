@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import request from 'superagent';
 
 export default class JobItem extends React.Component {
   constructor (props) {
@@ -12,6 +13,20 @@ export default class JobItem extends React.Component {
     this.refs.moreInfo.classList.toggle('hide');
   }
 
+  changeStatus(evt) {
+    let status = evt.target.value;
+
+    request
+      .put('/api/scheduler/' + this.state.id)
+      .send({ status: status })
+      .end((err, res) => {
+        if (err) return console.error(err);
+        this.setState({
+          status: status
+        });
+      });
+  }
+
   render () {
 
     var moreInfo = (function () {
@@ -21,11 +36,11 @@ export default class JobItem extends React.Component {
         } else if (key === 'status') {
 
           let options = ['pending', 'in-progress', 'completed', 'failed'].map((s, i) => {
-            return <option key={i} value={s} selected={value === s}>{s}</option>;
+            return <option key={i} value={s}>{s}</option>;
           });
 
           return (
-            <select>
+            <select value={value} onChange={this.changeStatus.bind(this)}>
               {options}
             </select>
           );
@@ -35,7 +50,7 @@ export default class JobItem extends React.Component {
         } else {
           return value;
         }
-      };
+      }.bind(this);
 
       return (
         <dl className="more-info-list">
