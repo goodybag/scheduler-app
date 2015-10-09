@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node server",
+    "test": "./node_modules/mocha/bin/mocha test/",
     "build": "./node_modules/gulp/bin/gulp.js",
     "build:dev": "./node_modules/gulp/bin/gulp.js dev"
   },
@@ -16,12 +17,17 @@
     "express": "~4.13.1",
     "hbs": "~3.1.0",
     "less-middleware": "1.0.x",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
     "moment": "^2.10.6",
+    "mongo-sql": "^2.7.1",
     "morgan": "~1.6.1",
+    "pg": "^4.4.2",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "serve-favicon": "~2.3.0",
     "superagent": "^1.4.0",
+    "supertest": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
