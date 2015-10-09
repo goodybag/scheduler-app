@@ -23573,6 +23573,11 @@ var App = (function (_React$Component) {
         'div',
         null,
         _react2['default'].createElement(_jobNavJs2['default'], null),
+        _react2['default'].createElement(
+          'h1',
+          null,
+          'Pending'
+        ),
         _react2['default'].createElement(_jobListJs2['default'], { jobs: this.state.jobs })
       );
     }
@@ -23632,6 +23637,35 @@ var JobItem = (function (_React$Component) {
       var moreInfo = (function () {
         var _this = this;
 
+        var resolveValue = function resolveValue(value, key) {
+          if (typeof value === "object") {
+            return JSON.stringify(value);
+          } else if (key === 'status') {
+
+            var options = ['pending', 'in-progress', 'completed', 'failed'].map(function (s, i) {
+              return _react2['default'].createElement(
+                'option',
+                { key: i, value: s, selected: value === s },
+                s
+              );
+            });
+
+            return _react2['default'].createElement(
+              'select',
+              null,
+              options
+            );
+          } else if (key === 'predicate_id') {
+            return _react2['default'].createElement(
+              'a',
+              { href: value },
+              value
+            );
+          } else {
+            return value;
+          }
+        };
+
         return _react2['default'].createElement(
           'dl',
           { className: 'more-info-list' },
@@ -23649,7 +23683,7 @@ var JobItem = (function (_React$Component) {
               _react2['default'].createElement(
                 'dd',
                 null,
-                typeof value === "object" ? JSON.stringify(value) : value
+                resolveValue(value, key)
               )
             );
           })
@@ -23658,10 +23692,10 @@ var JobItem = (function (_React$Component) {
 
       return _react2['default'].createElement(
         'div',
-        { className: 'job-item', onClick: this.toggleInfo.bind(this) },
+        { className: 'job-item' },
         _react2['default'].createElement(
           'div',
-          { className: 'job-info' },
+          { className: 'job-info', onClick: this.toggleInfo.bind(this) },
           this.state.id,
           ' ',
           _react2['default'].createElement(
