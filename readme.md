@@ -7,7 +7,7 @@ npm test
 npm start [port] default port 8000
 ```
 
-
+[http://localhost:8000/scheduler](http://localhost:8000/scheduler)
 
 ## API
 
@@ -34,4 +34,3 @@ npm start [port] default port 8000
 ```js
 var schedulerApp = require('scheduler-app');
 app.user(schedulerApp('postgres://localhost/cater'))
-```
