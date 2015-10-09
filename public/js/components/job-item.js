@@ -15,6 +15,28 @@ export default class JobItem extends React.Component {
   render () {
 
     var moreInfo = (function () {
+      var resolveValue = function (value, key) {
+        if (typeof value === "object") {
+          return JSON.stringify(value);
+        } else if (key === 'status') {
+
+          let options = ['pending', 'in-progress', 'completed', 'failed'].map((s, i) => {
+            return <option key={i} value={s} selected={value === s}>{s}</option>;
+          });
+
+          return (
+            <select>
+              {options}
+            </select>
+          );
+
+        } else if (key === 'predicate_id') {
+          return <a href={value}>{value}</a>;
+        } else {
+          return value;
+        }
+      };
+
       return (
         <dl className="more-info-list">
         {Object.keys(this.state).map( (key, i) => {
@@ -24,7 +46,7 @@ export default class JobItem extends React.Component {
             <div key={i}>
               <dt>{key}</dt>
               <dd>
-                {typeof value === "object"? JSON.stringify(value) : value}
+                {resolveValue(value, key)}
               </dd>
             </div>
           );
@@ -34,11 +56,13 @@ export default class JobItem extends React.Component {
     }.bind(this))();
 
     return (
-      <div className="job-item" onClick={this.toggleInfo.bind(this)}>
-        <div className="job-info">
+      <div className="job-item">
+
+        <div className="job-info" onClick={this.toggleInfo.bind(this)}>
           {this.state.id} <span className="action">{this.state.action}</span>
           <span className="job-datetime">{moment(this.state.datetime).fromNow()}</span>
         </div>
+
         <div ref="moreInfo" className="hide">
           {moreInfo}
         </div>
