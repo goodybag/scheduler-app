@@ -23554,6 +23554,10 @@ var _jobListJs = require('./job-list.js');
 
 var _jobListJs2 = _interopRequireDefault(_jobListJs);
 
+var _superagent = require('superagent');
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
 var App = (function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -23562,22 +23566,39 @@ var App = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
     this.state = {
-      jobs: props.jobs || []
+      jobs: [],
+      statuses: ['pending', 'completed', 'failed', 'in-progress'],
+      active: 'pending'
     };
   }
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchJobs('pending');
+    }
+  }, {
+    key: 'fetchJobs',
+    value: function fetchJobs(status) {
+      _superagent2['default'].get('/api/scheduler?status=' + status).end((function (err, res) {
+        if (err) {
+          return console.error(err);
+        }
+
+        this.setState({
+          jobs: res.body,
+          active: status
+        });
+        this.forceUpdate();
+      }).bind(this));
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
         'div',
         null,
-        _react2['default'].createElement(_jobNavJs2['default'], null),
-        _react2['default'].createElement(
-          'h1',
-          null,
-          'Pending'
-        ),
+        _react2['default'].createElement(_jobNavJs2['default'], { statuses: this.state.statuses, active: this.state.active, fetchJobs: this.fetchJobs.bind(this) }),
         _react2['default'].createElement(_jobListJs2['default'], { jobs: this.state.jobs })
       );
     }
@@ -23589,7 +23610,7 @@ var App = (function (_React$Component) {
 exports['default'] = App;
 module.exports = exports['default'];
 
-},{"./job-list.js":164,"./job-nav.js":165,"react":158}],163:[function(require,module,exports){
+},{"./job-list.js":164,"./job-nav.js":165,"react":158,"superagent":159}],163:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -23614,6 +23635,10 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _superagent = require('superagent');
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
 var JobItem = (function (_React$Component) {
   _inherits(JobItem, _React$Component);
 
@@ -23631,13 +23656,27 @@ var JobItem = (function (_React$Component) {
       this.refs.moreInfo.classList.toggle('hide');
     }
   }, {
+    key: 'changeStatus',
+    value: function changeStatus(evt) {
+      var _this = this;
+
+      var status = evt.target.value;
+
+      _superagent2['default'].put('/api/scheduler/' + this.state.id).send({ status: status }).end(function (err, res) {
+        if (err) return console.error(err);
+        _this.setState({
+          status: status
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
 
       var moreInfo = (function () {
-        var _this = this;
+        var _this2 = this;
 
-        var resolveValue = function resolveValue(value, key) {
+        var resolveValue = (function (value, key) {
           if (typeof value === "object") {
             return JSON.stringify(value);
           } else if (key === 'status') {
@@ -23645,14 +23684,14 @@ var JobItem = (function (_React$Component) {
             var options = ['pending', 'in-progress', 'completed', 'failed'].map(function (s, i) {
               return _react2['default'].createElement(
                 'option',
-                { key: i, value: s, selected: value === s },
+                { key: i, value: s },
                 s
               );
             });
 
             return _react2['default'].createElement(
               'select',
-              null,
+              { value: value, onChange: this.changeStatus.bind(this) },
               options
             );
           } else if (key === 'predicate_id') {
@@ -23664,13 +23703,13 @@ var JobItem = (function (_React$Component) {
           } else {
             return value;
           }
-        };
+        }).bind(this);
 
         return _react2['default'].createElement(
           'dl',
           { className: 'more-info-list' },
           Object.keys(this.state).map(function (key, i) {
-            var value = _this.state[key];
+            var value = _this2.state[key];
 
             return _react2['default'].createElement(
               'div',
@@ -23724,7 +23763,7 @@ var JobItem = (function (_React$Component) {
 exports['default'] = JobItem;
 module.exports = exports['default'];
 
-},{"moment":2,"react":158}],164:[function(require,module,exports){
+},{"moment":2,"react":158,"superagent":159}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -23756,22 +23795,17 @@ var JobList = (function (_React$Component) {
     _classCallCheck(this, JobList);
 
     _get(Object.getPrototypeOf(JobList.prototype), 'constructor', this).call(this, props);
-    this.state = {
-      jobs: props.jobs || []
-    };
   }
 
   _createClass(JobList, [{
     key: 'render',
     value: function render() {
-      var jobs = this.state.jobs.map(function (job, i) {
-        return _react2['default'].createElement(_jobItemJs2['default'], { key: i, job: job });
-      });
-
       return _react2['default'].createElement(
         'div',
         null,
-        jobs
+        this.props.jobs.map(function (job, i) {
+          return _react2['default'].createElement(_jobItemJs2['default'], { key: job.id, job: job });
+        })
       );
     }
   }]);
@@ -23810,26 +23844,28 @@ var JobNav = (function (_React$Component) {
     _classCallCheck(this, JobNav);
 
     _get(Object.getPrototypeOf(JobNav.prototype), 'constructor', this).call(this, props);
-
-    this.state = {
-      options: ['pending', 'completed', 'failed', 'in-progress']
-    };
   }
 
   _createClass(JobNav, [{
     key: 'render',
     value: function render() {
+      var _this = this;
+
       return _react2['default'].createElement(
         'nav',
         { className: 'job-nav' },
         _react2['default'].createElement(
           'ol',
           null,
-          this.state.options.map(function (opt, i) {
+          this.props.statuses.map(function (status, i) {
             return _react2['default'].createElement(
               'li',
-              { key: i },
-              opt
+              {
+                key: i,
+                className: status === _this.props.active ? 'active' : '',
+                onClick: _this.props.fetchJobs.bind(_this, status)
+              },
+              status
             );
           })
         )
@@ -23864,8 +23900,6 @@ var _componentsAppJs = require('../components/app.js');
 
 var _componentsAppJs2 = _interopRequireDefault(_componentsAppJs);
 
-_superagent2['default'].get('/api/scheduler').end(function (err, jobs) {
-  _reactDom2['default'].render(_react2['default'].createElement(_componentsAppJs2['default'], { jobs: jobs.body }), document.getElementById('scheduler-app'));
-});
+_reactDom2['default'].render(_react2['default'].createElement(_componentsAppJs2['default'], null), document.getElementById('scheduler-app'));
 
 },{"../components/app.js":162,"react":158,"react-dom":3,"superagent":159}]},{},[166]);
