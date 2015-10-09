@@ -13,8 +13,10 @@ router.get('/scheduler', function(req, res) {
     type: 'select'
   , table: 'scheduled_jobs'
   , where: {
-      status: 'pending'
+      status: req.query.status || 'pending'
     }
+  , limit: 50
+  , order: { id: 'desc' }
   };
 
   pgquery(query, function (error, results) {
