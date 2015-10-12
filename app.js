@@ -14,6 +14,7 @@ var api = require('./routes/api');
 var app = express();
 
 helpers.register(hbs);
+hbs.registerPartials(__dirname + '/views/partials');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
