@@ -1,0 +1,59 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: @navbarHeight;
+  background: #ffffff;
+  z-index: 9999;
+  color: #434a54;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-bottom: solid 1px #b7b6ad;
+  -webkit-backface-visibility: hidden;
+}
+
+.navbar-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.nav {
+  float: right;
+}
+
+.nav li {
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+
+  &:last-child {
+    padding-right: 15px;
+  }
+}
+
+.nav li > a {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 31px 20px 24px;
+  color: #434a54;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: #f2f2f2;
+  }
+}
+
+.navbar-logo {
+  float: left;
+  margin-right: 16px;
+  height: 100%;
+  max-height: @navbarHeight;
+  max-width: 138px;
+  font-family: 'Aleo', Georgia, serif;
+  font-size: 25px;
+  line-height: @navbarHeight;
+  color: #ffffff;
+  padding-top: 18.5px;
+  padding-bottom: 14.5px;
+  padding-left: 15px;
+}
