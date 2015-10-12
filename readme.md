@@ -4,7 +4,7 @@
 npm install
 npm run build
 npm test
-npm start [port] default port 8000
+npm start
 ```
 
 [http://localhost:8000/admin/scheduler](http://localhost:8000/admin/scheduler)
@@ -14,9 +14,9 @@ npm start [port] default port 8000
 
     ENDPOINT             METHOD        OPERATION
     ------------------------------------------------------------
-    /scheduler            GET          All scheduled jobs
-    /scheduler/:job_id    GET          Get a scheduled job
-    /scheduler/:job_id    PUT          Update a scheduled job
+    /api/scheduler            GET          All scheduled jobs
+    /api/scheduler/:job_id    GET          Get a scheduled job
+    /api/scheduler/:job_id    PUT          Update a scheduled job
 
 
 ## Install within an Express app
