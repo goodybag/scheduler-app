@@ -7,7 +7,7 @@ npm test
 npm start [port] default port 8000
 ```
 
-[http://localhost:8000/scheduler](http://localhost:8000/scheduler)
+[http://localhost:8000/admin/scheduler](http://localhost:8000/admin/scheduler)
 
 ## API
 
