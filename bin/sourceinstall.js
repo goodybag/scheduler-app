@@ -17,7 +17,7 @@ if (sourceType(config) === 'github') {
 
     var cmd = process.argv[2];
 
-    exec(cmd, function (error) {
+    exec('cd.. && ' + cmd, function (error) {
       if (error) {
         console.log('ERROR: unable execute command', cmd, error);
         return process.exit(1);
