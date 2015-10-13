@@ -9,6 +9,8 @@ var router = express.Router();
 router.get('/scheduler', function(req, res) {
   var pgquery = req.app.get('query');
 
+  var prevId = req.query.prev_id;
+
   var query = {
     type: 'select'
   , table: 'scheduled_jobs'
@@ -18,6 +20,10 @@ router.get('/scheduler', function(req, res) {
   , limit: 50
   , order: { id: 'desc' }
   };
+
+  if (prevId) {
+    query.where.id = { $lt: prevId };
+  }
 
   pgquery(query, function (error, results) {
     if (error) return res.status(500).json(error);
