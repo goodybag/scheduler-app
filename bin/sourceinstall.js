@@ -9,7 +9,7 @@ var config = require('../package.json');
 var exec = require('child_process').exec;
 
 if (sourceType(config) === 'github') {
-  exec('npm install --dev --ignore-scripts', function (error) {
+  exec('npm install --ignore-scripts', function (error) {
     if (error) {
       console.log('ERROR: unable to source install scheduler-app', error);
       return process.exit(1);
