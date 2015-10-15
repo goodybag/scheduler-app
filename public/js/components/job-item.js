@@ -17,7 +17,7 @@ export default class JobItem extends React.Component {
     let status = evt.target.value;
 
     request
-      .put('/api/scheduler/' + this.state.id)
+      .put('/api/jobs/' + this.state.id)
       .send({ status: status })
       .end((err, res) => {
         if (err) return console.error(err);

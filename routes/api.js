@@ -6,7 +6,7 @@ var router = express.Router();
 * GET /api/scheduler
 */
 
-router.get('/scheduler', function(req, res) {
+router.get('/jobs', function(req, res) {
   var pgquery = req.app.get('query');
 
   var query = {
@@ -29,7 +29,7 @@ router.get('/scheduler', function(req, res) {
 * GET /api/scheduler/:job_id
 */
 
-router.get('/scheduler/:job_id', function(req, res) {
+router.get('/jobs/:job_id', function(req, res) {
   var pgquery = req.app.get('query');
 
   var query = {
@@ -50,7 +50,7 @@ router.get('/scheduler/:job_id', function(req, res) {
 * PUT /api/scheduler/:job_id
 */
 
-router.put('/scheduler/:job_id', function(req, res) {
+router.put('/jobs/:job_id', function(req, res) {
   var pgquery = req.app.get('query');
 
   var query = {

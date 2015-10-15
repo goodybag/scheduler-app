@@ -19,7 +19,7 @@ export default class App extends React.Component {
 
   fetchJobs (status) {
     request
-      .get('/api/scheduler?status=' + status)
+      .get('/api/jobs?status=' + status)
       .end(function (err, res) {
         if (err) {
           return console.error(err);
