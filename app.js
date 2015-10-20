@@ -36,7 +36,6 @@ app.use(function(req, res, next) {
 });
 
 module.exports = function (config) {
-  app.set('query', query(config));
-
+  process.env.PG_CONFIG = config;
   return app;
 };
