@@ -1,13 +1,13 @@
 var express = require('express');
 var utils = require('../utils');
 var router = express.Router();
+var pgquery = require('../lib/query');
 
 /*
 * GET /api/scheduler
 */
 
 router.get('/jobs', function(req, res) {
-  var pgquery = req.app.get('query');
 
   var query = {
     type: 'select'
@@ -30,7 +30,6 @@ router.get('/jobs', function(req, res) {
 */
 
 router.get('/jobs/:job_id', function(req, res) {
-  var pgquery = req.app.get('query');
 
   var query = {
     type: 'select'
@@ -51,7 +50,6 @@ router.get('/jobs/:job_id', function(req, res) {
 */
 
 router.put('/jobs/:job_id', function(req, res) {
-  var pgquery = req.app.get('query');
 
   var query = {
     type: 'update'
