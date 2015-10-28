@@ -10,11 +10,23 @@ export default class App extends React.Component {
       jobs: []
     , statuses: ['pending', 'completed', 'failed', 'in-progress']
     , active: 'pending'
+    , interval: 1000
     }
   }
 
   componentDidMount() {
-    this.fetchJobs('pending')
+    this.fetchJobs('pending');
+    this.pollJobs();
+  }
+
+  componentDidUnmount() {
+    clearInterval(this.iv);
+  }
+
+  pollJobs () {
+    this.iv = setInterval(function () {
+      this.fetchJobs(this.state.active);
+    }.bind(this), this.state.interval);
   }
 
   fetchJobs (status) {
@@ -29,7 +41,6 @@ export default class App extends React.Component {
           jobs: res.body
         , active: status
         });
-        this.forceUpdate();
 
       }.bind(this));
   }

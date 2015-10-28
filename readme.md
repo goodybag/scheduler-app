@@ -14,9 +14,9 @@ npm start
 
     ENDPOINT             METHOD        OPERATION
     ------------------------------------------------------------
-    /api/scheduler            GET          All scheduled jobs
-    /api/scheduler/:job_id    GET          Get a scheduled job
-    /api/scheduler/:job_id    PUT          Update a scheduled job
+    /api/jobs            GET          All scheduled jobs
+    /api/jobs/:job_id    GET          Get a scheduled job
+    /api/jobs/:job_id    PUT          Update a scheduled job
 
 
 ## Install within an Express app
