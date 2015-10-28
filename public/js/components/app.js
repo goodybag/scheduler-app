@@ -10,7 +10,7 @@ export default class App extends React.Component {
       jobs: []
     , statuses: ['pending', 'completed', 'failed', 'in-progress']
     , active: 'pending'
-    , interval: 1100
+    , interval: 1000
     }
   }
 
