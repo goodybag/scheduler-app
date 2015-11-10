@@ -1,4 +1,5 @@
 #Scheduler App
+An express application for monitoring job statuses
 
 ```
 npm install
@@ -29,8 +30,11 @@ npm start
 }
 ```
 
-2) register
+2) register within express
 
 ```js
 var schedulerApp = require('scheduler-app');
-app.user(schedulerApp('postgres://localhost/cater'))
+
+app.use(schedulerApp('postgres://localhost/cater'))
+
+```
