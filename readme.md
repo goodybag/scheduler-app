@@ -8,7 +8,7 @@ npm test
 npm start
 ```
 
-[http://localhost:8000/admin/scheduler](http://localhost:8000/admin/scheduler)
+[http://localhost:8000/admin/scheduler-app](http://localhost:8000/admin/scheduler-app)
 
 ## API
 
