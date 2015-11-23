@@ -1,6 +1,6 @@
 {
   "name": "@goodybag/scheduler-app",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "goodybag job scheduler app",
   "author": "Goodybag",
   "main": "app.js",
