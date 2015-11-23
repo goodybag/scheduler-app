@@ -1,5 +1,5 @@
 {
-  "name": "scheduler-app",
+  "name": "@goodybag/scheduler-app",
   "version": "0.0.5",
   "description": "goodybag job scheduler app",
   "author": "Goodybag",
