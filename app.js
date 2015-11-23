@@ -28,13 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin/scheduler-app', routes);
 app.use('/api', api);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
 module.exports = function (config) {
   process.env.PG_CONFIG = config;
   return app;
