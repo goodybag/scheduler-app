@@ -4,7 +4,7 @@ var router = express.Router();
 var pgquery = require('../lib/query');
 
 /*
-* GET /api/scheduler
+* GET /api/jobs
 */
 
 router.get('/jobs', function(req, res) {
@@ -26,7 +26,7 @@ router.get('/jobs', function(req, res) {
 });
 
 /*
-* GET /api/scheduler/:job_id
+* GET /api/jobs/:job_id
 */
 
 router.get('/jobs/:job_id', function(req, res) {
@@ -46,7 +46,7 @@ router.get('/jobs/:job_id', function(req, res) {
 });
 
 /*
-* PUT /api/scheduler/:job_id
+* PUT /api/jobs/:job_id
 */
 
 router.put('/jobs/:job_id', function(req, res) {
